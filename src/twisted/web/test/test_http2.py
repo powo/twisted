@@ -2288,7 +2288,7 @@ class H2FlowControlTests(unittest.TestCase, HTTP2TestHelpers):
         # Send the request, but instead of the last frame send a RST_STREAM
         # frame instead. This needs to be very long to actually force the
         # WINDOW_UPDATE frames out.
-        frameData = [b"\x00" * (2 ** 14)] * 4
+        frameData = [b"\x00" * (2**14)] * 4
         bodyLength = f"{sum(len(data) for data in frameData)}"
         headers = self.postRequestHeaders[:-1] + [("content-length", bodyLength)]
         frames = buildRequestFrames(
@@ -2760,7 +2760,7 @@ class HTTP2TimeoutTests(unittest.TestCase, HTTP2TestHelpers):
 
         # Advance the clock.
         reactor.advance(99)
-        self.assertEquals(len(requests), 1)
+        self.assertEqual(len(requests), 1)
 
         for x in range(10):
             # It doesn't time out as it's being written...
@@ -2871,7 +2871,7 @@ class HTTP2TimeoutTests(unittest.TestCase, HTTP2TestHelpers):
 
         # Advance the clock an arbitrarily long way, and confirm it never
         # aborts.
-        reactor.advance(2 ** 32)
+        reactor.advance(2**32)
         self.assertTrue(transport.disconnecting)
         self.assertFalse(transport.disconnected)
 

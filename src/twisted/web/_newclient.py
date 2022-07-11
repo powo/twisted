@@ -569,9 +569,9 @@ class HTTPClientParser(HTTPParser):
 
 
 _VALID_METHOD = re.compile(
-    br"\A[%s]+\Z"
+    rb"\A[%s]+\Z"
     % (
-        bytes().join(
+        b"".join(
             (
                 b"!",
                 b"#",
@@ -620,7 +620,7 @@ def _ensureValidMethod(method):
     raise ValueError(f"Invalid method {method!r}")
 
 
-_VALID_URI = re.compile(br"\A[\x21-\x7e]+\Z")
+_VALID_URI = re.compile(rb"\A[\x21-\x7e]+\Z")
 
 
 def _ensureValidURI(uri):
